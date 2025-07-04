@@ -19,30 +19,66 @@ from torch.utils.data import DataLoader, WeightedRandomSampler, Dataset
 from torchvision.models import get_model
 from tqdm.notebook import tqdm 
 
+from torchvision.transforms import ToTensor
+from torchvision.transforms.v2 import CenterCrop, Compose, Normalize, Resize
+
+mean = [0.485, 0.456, 0.406] # Imaginet
+std  = [0.229, 0.224, 0.225] # Imaginet
+
+
+# code provided by Alice and adopted in our case
+class LinearBatchNorm(nn.Module):
+    def __init__(self, in_features, out_features, dropout=0.5, constant_size=True, dim_batch=None):
+        super().__init__()
+        if dim_batch is None:
+            dim_batch = out_features
+        self.cs=constant_size
+        self.block = nn.Sequential(
+            nn.Linear(in_features, out_features),
+            self.get_norm(constant_size, dim_batch),
+            nn.ReLU(),
+            nn.Dropout(p=dropout),
+        )
+
+    def get_norm(self, constant_size, out_features):
+        if not constant_size:
+            norm = nn.InstanceNorm1d(out_features)
+        else:
+            norm = nn.BatchNorm1d(out_features)
+        return norm
+
+    def forward(self, x):
+        return self.block(x)
 
 
 class MitosisClassifier(nn.Module):
-    def __init__(self, encoder):
+    def __init__(self, encoder, classifier_hidden_dims=[512, 128], dropout=0.5, num_classes=1):
         super().__init__()
         self.encoder = encoder
-        self.in_features = 2048 # typically 2048 for resnet50
-        self.classifier = nn.Linear(self.in_features, 1)
+        self.feature_depth = 2048  # output of ResNet50
+        self.classifier_hidden_dims = classifier_hidden_dims
+        self.dropout = dropout
+        self.num_classes = num_classes
+        self.classifier = self._build_classifier()
+
+    def _build_classifier(self):
+        layers = []
+        prev_dim = self.feature_depth
+        for hidden_dim in self.classifier_hidden_dims:
+            layers.append(LinearBatchNorm(prev_dim, hidden_dim, self.dropout, constant_size=True))
+            prev_dim = hidden_dim
+        layers.append(nn.Linear(prev_dim, self.num_classes))  # last layer: linear only
+        return nn.Sequential(*layers)
 
 
     def forward(self, x):
-        """
-        x (Tensor): a batch of input images with shape [B, 3, W, H] where B = batch_size
-        Returns:
-            logits: raw scores before activation, shape [B]
-            Y_prob: probabilities after sigmoid, shape [B]
-            Y_hat: predicted labels (0 or 1), shape [B]
-        """
-        features = self.encoder(x)                     # shape: [B, 2048]
-        logits = self.classifier(features).squeeze(1)  # shape: [B]
-        Y_prob = torch.sigmoid(logits)                 # shape: [B]
-        Y_hat = (Y_prob > 0.5).float()                 # shape: [B]
-        return logits, Y_prob, Y_hat
-
+        features = self.encoder(x)              # shape: [B, 2048]
+        if features.dim() == 4:
+            features = features.mean([2, 3])  # GAP if needed
+        logits = self.classifier(features).squeeze(1)  # [B]
+        Y_prob = torch.sigmoid(logits)                  # shape: [B]
+        Y_hat = (Y_prob > 0.5).float()                  # shape: [B]
+        return logits, Y_prob, Y_hat                   
 
 
 
@@ -91,24 +127,21 @@ class MitosisTrainer:
 
     @property
     def train_transform(self):
-        transform = A.Compose([
-                A.D4(p=1),
-                A.ColorJitter(brightness=(0.9, 1.1), contrast=(0.9, 1.1), saturation=(0.9, 1.1), hue=(-0.1, 0.1), p=0.5),
-                A.Defocus(radius=(1,3), p=0.3),
-                A.CenterCrop(48, 48),
-                A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-                ToTensorV2()
-                ])
+        transform = Compose([
+                ToTensor(),
+                Normalize(mean=mean, std=std),
+                CenterCrop(size=48),
+            ])
         return transform
 
 
     @property
     def val_transform(self):
-        transform = A.Compose([
-                A.CenterCrop(48, 48),
-                A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-                ToTensorV2()
-            ])
+        transform = transform = Compose([
+                        ToTensor(),
+                        Normalize(mean=mean, std=std),
+                        CenterCrop(size=48),
+                    ])
         return transform
 
 
@@ -267,7 +300,11 @@ class MitosisTrainer:
         val_loader = self.prepare_data_loaders(val_images, val_labels, self.val_transform, is_training=False)
 
         # Initialize model, optimizer, scheduler
-        model = MitosisClassifier(self.encoder).to(self.device)
+        model = MitosisClassifier(
+            encoder=self.encoder,
+            classifier_hidden_dims=[1024, 512, 128, 64],
+            dropout=0.3,
+            num_classes=1).to(self.device)
         for param in model.encoder.parameters(): #freezing the encoder and training the fc layer
             param.requires_grad = False
         optimizer = optim.AdamW(model.parameters(), lr=self.lr)
@@ -362,7 +399,7 @@ class MitosisTrainer:
             test_accuracies = []
             test_auc_roc_scores=[]
             for fold, model_path in enumerate(best_model_paths):
-                model = MitosisClassifier(self.encoder).to(self.device)
+                model =MitosisClassifier(encoder=self.encoder, classifier_hidden_dims=[512, 128, 64],dropout=0.3,num_classes=1).to(self.device)
                 model.load_state_dict(torch.load(model_path))
 
                 test_loss, test_preds, test_targets, test_probs = self.evaluate(model, test_loader, "Test")
