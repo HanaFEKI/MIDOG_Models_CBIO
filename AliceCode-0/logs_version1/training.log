@@ -1,6 +1,71 @@
-2025-07-04 11:47:12,719 - utils.alice_utils - INFO - Created experiment directoy: logs_version1.
-2025-07-04 11:47:12,721 - utils.alice_utils - INFO - Starting Fold 1
-2025-07-04 11:52:04,966 - utils.alice_utils - INFO - Created experiment directoy: logs_version1.
-2025-07-04 11:52:04,969 - utils.alice_utils - INFO - Starting Fold 1
-2025-07-04 11:55:59,035 - utils.alice_utils - INFO - Created experiment directoy: logs_version1.
-2025-07-04 11:55:59,037 - utils.alice_utils - INFO - Starting Fold 1
+2025-07-04 13:04:04,672 - utils.alice_utils - INFO - Created experiment directoy: logs_version1.
+2025-07-04 13:04:04,673 - utils.alice_utils - INFO - Starting Fold 1
+2025-07-04 13:04:08,990 - utils.alice_utils - INFO - Fold 1, Epoch 1/10 | Train Loss: 0.6254, Train Balanced Acc: 0.6349, Train Auc-ROC score: 0.7424 | Val Loss: 0.5023, Val Balanced Acc: 0.7255, Val Auc-ROC score: 0.8115 | 
+2025-07-04 13:04:12,393 - utils.alice_utils - INFO - Fold 1, Epoch 2/10 | Train Loss: 0.5153, Train Balanced Acc: 0.7658, Train Auc-ROC score: 0.8497 | Val Loss: 0.4634, Val Balanced Acc: 0.7465, Val Auc-ROC score: 0.8390 | 
+2025-07-04 13:04:15,749 - utils.alice_utils - INFO - Fold 1, Epoch 3/10 | Train Loss: 0.4523, Train Balanced Acc: 0.8072, Train Auc-ROC score: 0.8876 | Val Loss: 0.4126, Val Balanced Acc: 0.7564, Val Auc-ROC score: 0.8528 | 
+2025-07-04 13:04:19,171 - utils.alice_utils - INFO - Fold 1, Epoch 4/10 | Train Loss: 0.4066, Train Balanced Acc: 0.8364, Train Auc-ROC score: 0.9131 | Val Loss: 0.4006, Val Balanced Acc: 0.7551, Val Auc-ROC score: 0.8544 | 
+2025-07-04 13:04:22,570 - utils.alice_utils - INFO - Fold 1, Epoch 5/10 | Train Loss: 0.3450, Train Balanced Acc: 0.8845, Train Auc-ROC score: 0.9476 | Val Loss: 0.4195, Val Balanced Acc: 0.7736, Val Auc-ROC score: 0.8563 | 
+2025-07-04 13:04:25,655 - utils.alice_utils - INFO - Fold 1, Epoch 6/10 | Train Loss: 0.3121, Train Balanced Acc: 0.9036, Train Auc-ROC score: 0.9588 | Val Loss: 0.3991, Val Balanced Acc: 0.7656, Val Auc-ROC score: 0.8550 | 
+2025-07-04 13:04:28,706 - utils.alice_utils - INFO - Fold 1, Epoch 7/10 | Train Loss: 0.2872, Train Balanced Acc: 0.9137, Train Auc-ROC score: 0.9697 | Val Loss: 0.3866, Val Balanced Acc: 0.7698, Val Auc-ROC score: 0.8541 | 
+2025-07-04 13:04:32,182 - utils.alice_utils - INFO - Fold 1, Epoch 8/10 | Train Loss: 0.2744, Train Balanced Acc: 0.9226, Train Auc-ROC score: 0.9716 | Val Loss: 0.3547, Val Balanced Acc: 0.7687, Val Auc-ROC score: 0.8583 | 
+2025-07-04 13:04:35,276 - utils.alice_utils - INFO - Fold 1, Epoch 9/10 | Train Loss: 0.2542, Train Balanced Acc: 0.9347, Train Auc-ROC score: 0.9794 | Val Loss: 0.3664, Val Balanced Acc: 0.7704, Val Auc-ROC score: 0.8560 | 
+2025-07-04 13:04:38,348 - utils.alice_utils - INFO - Fold 1, Epoch 10/10 | Train Loss: 0.2588, Train Balanced Acc: 0.9348, Train Auc-ROC score: 0.9764 | Val Loss: 0.3864, Val Balanced Acc: 0.7682, Val Auc-ROC score: 0.8539 | 
+2025-07-04 13:04:38,348 - utils.alice_utils - INFO - Fold 1 - Best Validation Auc-Roc score : 0.8583
+2025-07-04 13:04:38,348 - utils.alice_utils - INFO - Starting Fold 2
+2025-07-04 13:04:41,802 - utils.alice_utils - INFO - Fold 2, Epoch 1/10 | Train Loss: 0.6195, Train Balanced Acc: 0.6595, Train Auc-ROC score: 0.7187 | Val Loss: 0.5538, Val Balanced Acc: 0.7427, Val Auc-ROC score: 0.8199 | 
+2025-07-04 13:04:45,232 - utils.alice_utils - INFO - Fold 2, Epoch 2/10 | Train Loss: 0.4978, Train Balanced Acc: 0.7750, Train Auc-ROC score: 0.8552 | Val Loss: 0.4889, Val Balanced Acc: 0.7609, Val Auc-ROC score: 0.8394 | 
+2025-07-04 13:04:48,621 - utils.alice_utils - INFO - Fold 2, Epoch 3/10 | Train Loss: 0.4406, Train Balanced Acc: 0.8130, Train Auc-ROC score: 0.8916 | Val Loss: 0.4205, Val Balanced Acc: 0.7787, Val Auc-ROC score: 0.8521 | 
+2025-07-04 13:04:51,682 - utils.alice_utils - INFO - Fold 2, Epoch 4/10 | Train Loss: 0.3941, Train Balanced Acc: 0.8442, Train Auc-ROC score: 0.9171 | Val Loss: 0.4373, Val Balanced Acc: 0.7669, Val Auc-ROC score: 0.8464 | 
+2025-07-04 13:04:54,697 - utils.alice_utils - INFO - Fold 2, Epoch 5/10 | Train Loss: 0.3470, Train Balanced Acc: 0.8730, Train Auc-ROC score: 0.9409 | Val Loss: 0.4031, Val Balanced Acc: 0.7515, Val Auc-ROC score: 0.8454 | 
+2025-07-04 13:04:57,750 - utils.alice_utils - INFO - Fold 2, Epoch 6/10 | Train Loss: 0.3039, Train Balanced Acc: 0.8963, Train Auc-ROC score: 0.9612 | Val Loss: 0.3962, Val Balanced Acc: 0.7485, Val Auc-ROC score: 0.8451 | 
+2025-07-04 13:05:00,774 - utils.alice_utils - INFO - Fold 2, Epoch 7/10 | Train Loss: 0.2804, Train Balanced Acc: 0.9133, Train Auc-ROC score: 0.9690 | Val Loss: 0.3710, Val Balanced Acc: 0.7451, Val Auc-ROC score: 0.8459 | 
+2025-07-04 13:05:03,805 - utils.alice_utils - INFO - Fold 2, Epoch 8/10 | Train Loss: 0.2651, Train Balanced Acc: 0.9212, Train Auc-ROC score: 0.9726 | Val Loss: 0.3856, Val Balanced Acc: 0.7453, Val Auc-ROC score: 0.8442 | 
+2025-07-04 13:05:06,799 - utils.alice_utils - INFO - Fold 2, Epoch 9/10 | Train Loss: 0.2517, Train Balanced Acc: 0.9277, Train Auc-ROC score: 0.9774 | Val Loss: 0.3937, Val Balanced Acc: 0.7484, Val Auc-ROC score: 0.8451 | 
+2025-07-04 13:05:09,802 - utils.alice_utils - INFO - Fold 2, Epoch 10/10 | Train Loss: 0.2534, Train Balanced Acc: 0.9288, Train Auc-ROC score: 0.9752 | Val Loss: 0.3812, Val Balanced Acc: 0.7454, Val Auc-ROC score: 0.8461 | 
+2025-07-04 13:05:09,803 - utils.alice_utils - INFO - Fold 2 - Best Validation Auc-Roc score : 0.8521
+2025-07-04 13:05:09,803 - utils.alice_utils - INFO - Starting Fold 3
+2025-07-04 13:05:13,239 - utils.alice_utils - INFO - Fold 3, Epoch 1/10 | Train Loss: 0.6214, Train Balanced Acc: 0.6533, Train Auc-ROC score: 0.7168 | Val Loss: 0.5435, Val Balanced Acc: 0.7470, Val Auc-ROC score: 0.8318 | 
+2025-07-04 13:05:16,620 - utils.alice_utils - INFO - Fold 3, Epoch 2/10 | Train Loss: 0.5164, Train Balanced Acc: 0.7518, Train Auc-ROC score: 0.8377 | Val Loss: 0.4849, Val Balanced Acc: 0.7796, Val Auc-ROC score: 0.8576 | 
+2025-07-04 13:05:20,049 - utils.alice_utils - INFO - Fold 3, Epoch 3/10 | Train Loss: 0.4532, Train Balanced Acc: 0.8027, Train Auc-ROC score: 0.8845 | Val Loss: 0.4416, Val Balanced Acc: 0.7853, Val Auc-ROC score: 0.8669 | 
+2025-07-04 13:05:23,107 - utils.alice_utils - INFO - Fold 3, Epoch 4/10 | Train Loss: 0.3953, Train Balanced Acc: 0.8438, Train Auc-ROC score: 0.9178 | Val Loss: 0.4054, Val Balanced Acc: 0.7728, Val Auc-ROC score: 0.8593 | 
+2025-07-04 13:05:26,234 - utils.alice_utils - INFO - Fold 3, Epoch 5/10 | Train Loss: 0.3421, Train Balanced Acc: 0.8803, Train Auc-ROC score: 0.9464 | Val Loss: 0.3778, Val Balanced Acc: 0.7709, Val Auc-ROC score: 0.8617 | 
+2025-07-04 13:05:29,352 - utils.alice_utils - INFO - Fold 3, Epoch 6/10 | Train Loss: 0.3102, Train Balanced Acc: 0.8976, Train Auc-ROC score: 0.9572 | Val Loss: 0.3829, Val Balanced Acc: 0.7578, Val Auc-ROC score: 0.8515 | 
+2025-07-04 13:05:32,462 - utils.alice_utils - INFO - Fold 3, Epoch 7/10 | Train Loss: 0.2893, Train Balanced Acc: 0.9072, Train Auc-ROC score: 0.9627 | Val Loss: 0.3850, Val Balanced Acc: 0.7710, Val Auc-ROC score: 0.8585 | 
+2025-07-04 13:05:35,506 - utils.alice_utils - INFO - Fold 3, Epoch 8/10 | Train Loss: 0.2698, Train Balanced Acc: 0.9164, Train Auc-ROC score: 0.9714 | Val Loss: 0.3716, Val Balanced Acc: 0.7747, Val Auc-ROC score: 0.8585 | 
+2025-07-04 13:05:38,610 - utils.alice_utils - INFO - Fold 3, Epoch 9/10 | Train Loss: 0.2504, Train Balanced Acc: 0.9303, Train Auc-ROC score: 0.9784 | Val Loss: 0.3616, Val Balanced Acc: 0.7589, Val Auc-ROC score: 0.8585 | 
+2025-07-04 13:05:41,784 - utils.alice_utils - INFO - Fold 3, Epoch 10/10 | Train Loss: 0.2560, Train Balanced Acc: 0.9306, Train Auc-ROC score: 0.9734 | Val Loss: 0.3642, Val Balanced Acc: 0.7651, Val Auc-ROC score: 0.8593 | 
+2025-07-04 13:05:41,785 - utils.alice_utils - INFO - Fold 3 - Best Validation Auc-Roc score : 0.8669
+2025-07-04 13:05:41,785 - utils.alice_utils - INFO - Starting Fold 4
+2025-07-04 13:05:45,149 - utils.alice_utils - INFO - Fold 4, Epoch 1/10 | Train Loss: 0.6125, Train Balanced Acc: 0.6622, Train Auc-ROC score: 0.7346 | Val Loss: 0.6208, Val Balanced Acc: 0.7095, Val Auc-ROC score: 0.7891 | 
+2025-07-04 13:05:48,551 - utils.alice_utils - INFO - Fold 4, Epoch 2/10 | Train Loss: 0.4985, Train Balanced Acc: 0.7761, Train Auc-ROC score: 0.8594 | Val Loss: 0.5474, Val Balanced Acc: 0.7288, Val Auc-ROC score: 0.8101 | 
+2025-07-04 13:05:51,944 - utils.alice_utils - INFO - Fold 4, Epoch 3/10 | Train Loss: 0.4400, Train Balanced Acc: 0.8168, Train Auc-ROC score: 0.8938 | Val Loss: 0.5261, Val Balanced Acc: 0.7369, Val Auc-ROC score: 0.8124 | 
+2025-07-04 13:05:55,394 - utils.alice_utils - INFO - Fold 4, Epoch 4/10 | Train Loss: 0.3919, Train Balanced Acc: 0.8459, Train Auc-ROC score: 0.9216 | Val Loss: 0.4720, Val Balanced Acc: 0.7355, Val Auc-ROC score: 0.8131 | 
+2025-07-04 13:05:58,770 - utils.alice_utils - INFO - Fold 4, Epoch 5/10 | Train Loss: 0.3462, Train Balanced Acc: 0.8784, Train Auc-ROC score: 0.9444 | Val Loss: 0.4742, Val Balanced Acc: 0.7274, Val Auc-ROC score: 0.8144 | 
+2025-07-04 13:06:01,816 - utils.alice_utils - INFO - Fold 4, Epoch 6/10 | Train Loss: 0.3163, Train Balanced Acc: 0.8920, Train Auc-ROC score: 0.9566 | Val Loss: 0.4586, Val Balanced Acc: 0.7324, Val Auc-ROC score: 0.8100 | 
+2025-07-04 13:06:04,873 - utils.alice_utils - INFO - Fold 4, Epoch 7/10 | Train Loss: 0.2840, Train Balanced Acc: 0.9123, Train Auc-ROC score: 0.9691 | Val Loss: 0.4443, Val Balanced Acc: 0.7208, Val Auc-ROC score: 0.8072 | 
+2025-07-04 13:06:07,913 - utils.alice_utils - INFO - Fold 4, Epoch 8/10 | Train Loss: 0.2658, Train Balanced Acc: 0.9262, Train Auc-ROC score: 0.9751 | Val Loss: 0.4358, Val Balanced Acc: 0.7236, Val Auc-ROC score: 0.8052 | 
+2025-07-04 13:06:10,980 - utils.alice_utils - INFO - Fold 4, Epoch 9/10 | Train Loss: 0.2600, Train Balanced Acc: 0.9265, Train Auc-ROC score: 0.9755 | Val Loss: 0.4533, Val Balanced Acc: 0.7217, Val Auc-ROC score: 0.8046 | 
+2025-07-04 13:06:14,063 - utils.alice_utils - INFO - Fold 4, Epoch 10/10 | Train Loss: 0.2571, Train Balanced Acc: 0.9282, Train Auc-ROC score: 0.9759 | Val Loss: 0.4328, Val Balanced Acc: 0.7165, Val Auc-ROC score: 0.8047 | 
+2025-07-04 13:06:14,064 - utils.alice_utils - INFO - Fold 4 - Best Validation Auc-Roc score : 0.8144
+2025-07-04 13:06:14,064 - utils.alice_utils - INFO - Starting Fold 5
+2025-07-04 13:06:17,530 - utils.alice_utils - INFO - Fold 5, Epoch 1/10 | Train Loss: 0.6151, Train Balanced Acc: 0.6667, Train Auc-ROC score: 0.7296 | Val Loss: 0.5974, Val Balanced Acc: 0.7436, Val Auc-ROC score: 0.8223 | 
+2025-07-04 13:06:20,969 - utils.alice_utils - INFO - Fold 5, Epoch 2/10 | Train Loss: 0.5140, Train Balanced Acc: 0.7626, Train Auc-ROC score: 0.8450 | Val Loss: 0.5250, Val Balanced Acc: 0.7655, Val Auc-ROC score: 0.8465 | 
+2025-07-04 13:06:24,373 - utils.alice_utils - INFO - Fold 5, Epoch 3/10 | Train Loss: 0.4524, Train Balanced Acc: 0.8062, Train Auc-ROC score: 0.8875 | Val Loss: 0.4722, Val Balanced Acc: 0.7694, Val Auc-ROC score: 0.8575 | 
+2025-07-04 13:06:27,704 - utils.alice_utils - INFO - Fold 5, Epoch 4/10 | Train Loss: 0.4003, Train Balanced Acc: 0.8405, Train Auc-ROC score: 0.9196 | Val Loss: 0.4847, Val Balanced Acc: 0.7685, Val Auc-ROC score: 0.8577 | 
+2025-07-04 13:06:30,794 - utils.alice_utils - INFO - Fold 5, Epoch 5/10 | Train Loss: 0.3554, Train Balanced Acc: 0.8734, Train Auc-ROC score: 0.9427 | Val Loss: 0.4273, Val Balanced Acc: 0.7771, Val Auc-ROC score: 0.8576 | 
+2025-07-04 13:06:34,266 - utils.alice_utils - INFO - Fold 5, Epoch 6/10 | Train Loss: 0.3151, Train Balanced Acc: 0.8971, Train Auc-ROC score: 0.9596 | Val Loss: 0.4153, Val Balanced Acc: 0.7757, Val Auc-ROC score: 0.8590 | 
+2025-07-04 13:06:37,352 - utils.alice_utils - INFO - Fold 5, Epoch 7/10 | Train Loss: 0.2906, Train Balanced Acc: 0.9132, Train Auc-ROC score: 0.9686 | Val Loss: 0.4044, Val Balanced Acc: 0.7768, Val Auc-ROC score: 0.8584 | 
+2025-07-04 13:06:40,394 - utils.alice_utils - INFO - Fold 5, Epoch 8/10 | Train Loss: 0.2701, Train Balanced Acc: 0.9254, Train Auc-ROC score: 0.9762 | Val Loss: 0.3962, Val Balanced Acc: 0.7661, Val Auc-ROC score: 0.8527 | 
+2025-07-04 13:06:43,463 - utils.alice_utils - INFO - Fold 5, Epoch 9/10 | Train Loss: 0.2649, Train Balanced Acc: 0.9257, Train Auc-ROC score: 0.9774 | Val Loss: 0.4071, Val Balanced Acc: 0.7803, Val Auc-ROC score: 0.8522 | 
+2025-07-04 13:06:46,507 - utils.alice_utils - INFO - Fold 5, Epoch 10/10 | Train Loss: 0.2627, Train Balanced Acc: 0.9308, Train Auc-ROC score: 0.9771 | Val Loss: 0.3993, Val Balanced Acc: 0.7664, Val Auc-ROC score: 0.8527 | 
+2025-07-04 13:06:46,509 - utils.alice_utils - INFO - Fold 5 - Best Validation Auc-Roc score : 0.8590
+2025-07-04 13:06:46,509 - utils.alice_utils - INFO - Average Validation Auc-Roc score : 0.8501 ± 0.0185
+2025-07-04 13:06:46,509 - utils.alice_utils - INFO - Evaluating on test set...
+2025-07-04 13:06:48,113 - utils.alice_utils - INFO - Fold 1 - Test Balanced Accuracy: 0.7841 - Test AUC-ROC score: 0.8699
+2025-07-04 13:06:49,700 - utils.alice_utils - INFO - Fold 2 - Test Balanced Accuracy: 0.7834 - Test AUC-ROC score: 0.8729
+2025-07-04 13:06:51,259 - utils.alice_utils - INFO - Fold 3 - Test Balanced Accuracy: 0.7912 - Test AUC-ROC score: 0.8727
+2025-07-04 13:06:52,909 - utils.alice_utils - INFO - Fold 4 - Test Balanced Accuracy: 0.7963 - Test AUC-ROC score: 0.8753
+2025-07-04 13:06:54,448 - utils.alice_utils - INFO - Fold 5 - Test Balanced Accuracy: 0.7735 - Test AUC-ROC score: 0.8688
+2025-07-04 13:06:54,449 - utils.alice_utils - INFO - Average Test Balanced Accuracy: 0.7857 ± 0.0077 | Average AUC-ROC score: 0.8719 ± 0.0023
+
+
