@@ -6,7 +6,7 @@
 #SBATCH -p cbio-gpu                                     # Partition (queue)
 #SBATCH --exclude=node005,node009                       # Nodes to avoid
 #SBATCH --cpus-per-task=4                               # Number of CPUs per task
-#SBATCH --output=output_alice_FM.out                     
+#SBATCH --output=FM_version1.out                     
 
 source /cluster/CBIO/home/hfeki/miniconda3/etc/profile.d/conda.sh
 conda activate hfeki

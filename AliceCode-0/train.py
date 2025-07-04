@@ -71,7 +71,7 @@ num_epochs = 10
 batch_size = 128
 num_folds = 5
 lr=1e-4
-experiment_dir = 'logs_and_weights'
+experiment_dir = 'logs_version1'
 
 # Set up the trainer
 trainer= MitosisTrainer(encoder=encoder, experiment_dir=experiment_dir, num_epochs=num_epochs, batch_size=batch_size, lr=lr, num_folds=num_folds)

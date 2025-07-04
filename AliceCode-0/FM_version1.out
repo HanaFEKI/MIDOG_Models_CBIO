@@ -1,0 +1,38 @@
+2025-07-04 11:55:59,035 - utils.alice_utils - INFO - Created experiment directoy: logs_version1.
+2025-07-04 11:55:59,037 - utils.alice_utils - INFO - Starting Fold 1
+/cluster/CBIO/home/hfeki/miniconda3/envs/hfeki/lib/python3.10/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 8 worker processes in total. Our suggested max number of worker in current system is 4, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+Training:   0%|          | 0/60 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/cluster/CBIO/home/hfeki/MIDOG_Models_CBIO/AliceCode-0/train.py", line 80, in <module>
+    val_accuracies, test_accuracies, test_auc_roc_scores = trainer.train_and_evaluate(train_images=train_images,train_labels=train_labels, test_images=val_images,test_labels=val_labels)
+  File "/cluster/CBIO/home/hfeki/MIDOG_Models_CBIO/AliceCode-0/utils/alice_utils.py", line 366, in train_and_evaluate
+    best_auc_roc, best_model_path = self.train_fold(
+  File "/cluster/CBIO/home/hfeki/MIDOG_Models_CBIO/AliceCode-0/utils/alice_utils.py", line 306, in train_fold
+    train_loss, train_preds, train_targets, train_probs = self.train_epoch(model, train_loader, optimizer)
+  File "/cluster/CBIO/home/hfeki/MIDOG_Models_CBIO/AliceCode-0/utils/alice_utils.py", line 224, in train_epoch
+    for images_batch, labels_batch in tqdm(train_loader, desc="Training"):
+  File "/cluster/CBIO/home/hfeki/miniconda3/envs/hfeki/lib/python3.10/site-packages/tqdm/notebook.py", line 250, in __iter__
+    for obj in it:
+  File "/cluster/CBIO/home/hfeki/miniconda3/envs/hfeki/lib/python3.10/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/cluster/CBIO/home/hfeki/miniconda3/envs/hfeki/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 708, in __next__
+    data = self._next_data()
+  File "/cluster/CBIO/home/hfeki/miniconda3/envs/hfeki/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1480, in _next_data
+    return self._process_data(data)
+  File "/cluster/CBIO/home/hfeki/miniconda3/envs/hfeki/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1505, in _process_data
+    data.reraise()
+  File "/cluster/CBIO/home/hfeki/miniconda3/envs/hfeki/lib/python3.10/site-packages/torch/_utils.py", line 733, in reraise
+    raise exception
+TypeError: Caught TypeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/cluster/CBIO/home/hfeki/miniconda3/envs/hfeki/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 349, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/cluster/CBIO/home/hfeki/miniconda3/envs/hfeki/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/cluster/CBIO/home/hfeki/miniconda3/envs/hfeki/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/cluster/CBIO/home/hfeki/MIDOG_Models_CBIO/AliceCode-0/utils/alice_utils.py", line 100, in __getitem__
+    image = self.transform(image=image)['image']
+TypeError: Compose.__call__() got an unexpected keyword argument 'image'
+

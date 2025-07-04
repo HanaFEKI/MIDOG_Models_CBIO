@@ -12,7 +12,7 @@ import timm
 
 from pathlib import Path 
 from PIL import Image
-from albumentations.pytorch.transforms import ToTensorV2
+from torchvision import transforms
 from sklearn.metrics import balanced_accuracy_score, roc_auc_score
 from sklearn.model_selection import KFold, train_test_split
 from torch.utils.data import DataLoader, WeightedRandomSampler, Dataset
@@ -105,15 +105,7 @@ class ClassificationDataset(Dataset):
 
 
 class MitosisTrainer:
-    def __init__(
-        self, 
-        encoder, 
-        experiment_dir: str,
-        num_epochs: int=2, 
-        batch_size: int=128, 
-        lr: float=1e-4, 
-        num_folds: int=5,
-        ):
+    def __init__(self, encoder, experiment_dir: str, num_epochs: int=2, batch_size: int=128, lr: float=1e-4, num_folds: int=5):
         self.encoder=encoder
         self.num_epochs = num_epochs
         self.batch_size = batch_size
@@ -127,20 +119,20 @@ class MitosisTrainer:
 
     @property
     def train_transform(self):
-        transform = Compose([
-                ToTensor(),
-                Normalize(mean=mean, std=std),
-                CenterCrop(size=48),
+        transform = transforms.Compose([
+                transforms.ToTensor(),
+                transforms.Normalize(mean=mean, std=std),
+                transforms.CenterCrop(size=48),
             ])
         return transform
 
 
     @property
     def val_transform(self):
-        transform = transform = Compose([
-                        ToTensor(),
-                        Normalize(mean=mean, std=std),
-                        CenterCrop(size=48),
+        transform = transforms.Compose([
+                transforms.ToTensor(),
+                transforms.Normalize(mean=mean, std=std),
+                transforms.CenterCrop(size=48),
                     ])
         return transform
 
@@ -300,11 +292,7 @@ class MitosisTrainer:
         val_loader = self.prepare_data_loaders(val_images, val_labels, self.val_transform, is_training=False)
 
         # Initialize model, optimizer, scheduler
-        model = MitosisClassifier(
-            encoder=self.encoder,
-            classifier_hidden_dims=[1024, 512, 128, 64],
-            dropout=0.3,
-            num_classes=1).to(self.device)
+        model = MitosisClassifier(encoder=self.encoder,classifier_hidden_dims=[1024, 512, 128, 64],dropout=0.3,num_classes=1).to(self.device)
         for param in model.encoder.parameters(): #freezing the encoder and training the fc layer
             param.requires_grad = False
         optimizer = optim.AdamW(model.parameters(), lr=self.lr)
@@ -399,7 +387,7 @@ class MitosisTrainer:
             test_accuracies = []
             test_auc_roc_scores=[]
             for fold, model_path in enumerate(best_model_paths):
-                model =MitosisClassifier(encoder=self.encoder, classifier_hidden_dims=[512, 128, 64],dropout=0.3,num_classes=1).to(self.device)
+                model =MitosisClassifier(encoder=self.encoder, classifier_hidden_dims=[1024, 512, 128, 64],dropout=0.3,num_classes=1).to(self.device)
                 model.load_state_dict(torch.load(model_path))
 
                 test_loss, test_preds, test_targets, test_probs = self.evaluate(model, test_loader, "Test")
