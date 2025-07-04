@@ -62,13 +62,15 @@ train_images, test_images, train_labels, test_labels = train_test_split(images, 
 
 
 # Set up training configurations
-num_epochs = 10
-batch_size = 128
+num_epochs = 100
+batch_size = 8
 num_folds = 5
-lr=1e-4
+lr=1e-3
 model_name = 'convnext_small'
 weights = 'IMAGENET1K_V1'
 experiment_dir = 'classification_results_convnext_crop60'
+early_stop_patience = 15
+
 
 
 # Set up the trainer
