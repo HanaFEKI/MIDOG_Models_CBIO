@@ -97,7 +97,7 @@ class ClassificationDataset(Dataset):
         label = self.labels[idx]
 
         if self.transform:
-            image = self.transform(image=image)['image']
+            image = self.transform(image=image)
 
         return image, label
 
@@ -133,7 +133,7 @@ class MitosisTrainer:
                 transforms.ToTensor(),
                 transforms.Normalize(mean=mean, std=std),
                 transforms.CenterCrop(size=48),
-                    ])
+    ])
         return transform
 
 
