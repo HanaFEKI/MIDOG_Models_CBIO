@@ -12,7 +12,7 @@ from torchvision import transforms
 from pathlib import Path 
 from PIL import Image
 from albumentations.pytorch.transforms import ToTensorV2
-from sklearn.metrics import balanced_accuracy_score
+from sklearn.metrics import balanced_accuracy_score, roc_auc_score
 from sklearn.model_selection import KFold, train_test_split, StratifiedGroupKFold
 from torch.utils.data import DataLoader, WeightedRandomSampler, Dataset
 from torchvision.models import get_model
@@ -186,7 +186,7 @@ class MitosisTrainer:
         train_targets = []
         train_probs=[]
 
-        for images_batch, labels_batch in tqdm(train_loader, desc=f"Fold {fold + 1} - Epoch {epoch + 1} Training"):
+        for images_batch, labels_batch in tqdm(train_loader, desc="Training"):
             images_batch, labels_batch = images_batch.to(self.device), labels_batch.to(self.device)
 
             optimizer.zero_grad()
@@ -221,7 +221,7 @@ class MitosisTrainer:
         val_probs=[]
 
         with torch.no_grad():
-            for images_batch, labels_batch in tqdm(data_loader, desc=f"Fold {fold + 1} - Epoch {epoch + 1} Validation"):
+            for images_batch, labels_batch in tqdm(data_loader, desc="Validation"):
                 images_batch, labels_batch = images_batch.to(self.device), labels_batch.to(self.device)
 
                 logits, Y_prob, Y_hat = model(images_batch)
@@ -268,6 +268,8 @@ class MitosisTrainer:
         best_val_balanced_accuracy = 0.0
         best_model_path = self.exp_dir / f'MIDOG25_binary_classification_baseline_fold{fold + 1}_best.pth'
         epochs_no_improve = 0
+        early_stop_patience= 15
+
 
         for epoch in range(self.num_epochs):
             # Training
@@ -286,12 +288,12 @@ class MitosisTrainer:
                 best_val_balanced_accuracy = val_balanced_accuracy
                 torch.save(model.state_dict(), best_model_path)
                 epoch_no_improve = 0
-                logger.info(f"New best validation balanced accuracy: {best_val_balanced_accuracy:.4f}. Model saved.")
+                self.logger.info(f"New best validation balanced accuracy: {best_val_balanced_accuracy:.4f}. Model saved.")
             else:
                 epochs_no_improve +=1
                 # logger.info(f"Validation balanced accuracy did not improve for {epochs_no_improve} epochs.")
                 if epochs_no_improve >= early_stop_patience:
-                    logger.info(f"Early stopping triggered at epoch {epoch + 1} for Fold {fold + 1}.")
+                    self.logger.info(f"Early stopping triggered at epoch {epoch + 1} for Fold {fold + 1}.")
                     break
                     
         
@@ -372,6 +374,7 @@ class MitosisTrainer:
 
             # Evaluate each fold's best model on test set
             test_accuracies = []
+            test_auc_roc_scores=[]
             for fold, model_path in enumerate(best_model_paths):
                 model = MitosisClassifier(self.model_name, self.weights).to(self.device)
                 model.load_state_dict(torch.load(model_path))
