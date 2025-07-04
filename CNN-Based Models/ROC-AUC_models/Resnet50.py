@@ -50,17 +50,10 @@ class InferenceDataset(Dataset):
         return image, label
 
 # Model definition
-class BinaryEfficientNetV2M(nn.Module):
-    def __init__(self):
-        super(BinaryEfficientNetV2M, self).__init__()
-        self.model = timm.create_model('efficientnetv2_m', pretrained=False)
-        self.model.classifier = nn.Linear(self.model.classifier.in_features, 1)
-
-    def forward(self, x):
-        return self.model(x)
+class Model_def:
+    
 
 # Load test dataset
-
 # Importing the dataset and image directory
 image_dir = "/cluster/CBIO/data1/hfeki/Datasets/dataset original/MIDOG25_Binary_Classification_Train_Set"
 dataset_file = "/cluster/CBIO/data1/hfeki/Datasets/dataset original/MIDOG25_Atypical_Classification_Train_Set.csv"
@@ -102,23 +95,14 @@ images, labels = load_data_from_csv(dataset_file, image_dir, label_col='majority
 
 # Split data into training and test split 
 train_images, test_images, train_labels, test_labels = train_test_split(images, labels, test_size=0.2, random_state=42)
-class_map = {"Atypical": 0, "Normal": 1}
-image_paths, labels = [], []
-
-for class_name, label_val in class_map.items():
-    class_folder = os.path.join(test_root, class_name)
-    for fname in os.listdir(class_folder):
-        if fname.lower().endswith(('.jpg', '.jpeg', '.png', '.tif')):
-            image_paths.append(os.path.join(class_folder, fname))
-            labels.append(label_val)
 
 # Prepare dataset and loader
-test_dataset = InferenceDataset(image_paths, labels, transform=val_transform)
+test_dataset = InferenceDataset(test_images, test_labels, transform=val_transform)
 test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False, num_workers=8, pin_memory=True)
 
 # Load models
 num_folds = 5
-model_paths = [f"amibr_efficientnetv2m_fold_{i + 1}_best.pth" for i in range(num_folds)]
+model_paths = [f"/cluster/CBIO/home/hfeki/Midog25/MIDOG_2025_Guide/classification_results_all/classif_resnet50/MIDOG25_binary_classification_baseline_fold_{i + 1}_best.pth" for i in range(num_folds)]
 models = []
 
 for path in model_paths:
@@ -170,7 +154,7 @@ print(f"Balanced Accuracy: {mean_bal_acc:.4f} ± {std_bal_acc:.4f}")
 print(f"AUROC: {mean_auroc:.4f} ± {std_auroc:.4f}")
 
 # Save predictions
-output_path = "efficientnetv2m_amibr_predictions.pkl"
+output_path = "ResNet50_predictions.pkl"
 with open(output_path, "wb") as f:
     pickle.dump(fold_probs_dict, f)
 
