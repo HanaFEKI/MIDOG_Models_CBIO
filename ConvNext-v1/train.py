@@ -15,7 +15,7 @@ from sklearn.model_selection import StratifiedGroupKFold, train_test_split
 from torch.utils.data import DataLoader, WeightedRandomSampler, Dataset
 from tqdm.notebook import tqdm 
 
-from utils.crop_classif_utils import MitosisClassifier, ClassificationDataset, MitosisTrainer
+from utils.convnext_utils import MitosisClassifier, ClassificationDataset, MitosisTrainer
 
 
 # Importing the dataset and image directory
@@ -68,9 +68,7 @@ num_folds = 5
 lr=1e-3
 model_name = 'convnext_small'
 weights = 'IMAGENET1K_V1'
-experiment_dir = 'classification_results_convnext_crop60'
-early_stop_patience = 15
-
+experiment_dir = 'results'
 
 
 # Set up the trainer
