@@ -11,7 +11,7 @@ import torch.optim as optim
 from PIL import Image
 from pathlib import Path
 from sklearn.metrics import balanced_accuracy_score
-from sklearn.model_selection import KFold, train_test_split
+from sklearn.model_selection import StratifiedGroupKFold, train_test_split
 from torch.utils.data import DataLoader, WeightedRandomSampler, Dataset
 from tqdm.notebook import tqdm 
 
