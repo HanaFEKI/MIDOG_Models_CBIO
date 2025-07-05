@@ -99,7 +99,7 @@ test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False, num_workers
 # Load models
 num_classes = 1
 num_folds = 5
-model_paths = [f"/cluster/CBIO/home/hfeki/Midog25/MIDOG_2025_Guide/classification_results_all/classif_resnet50/MIDOG25_binary_classification_baseline_fold_{i + 1}_best.pth" for i in range(num_folds)]
+model_paths = [f"/cluster/CBIO/home/hfeki/Midog25/MIDOG_2025_Guide/classification_results_all/classif_resnet50/MIDOG25_binary_classification_baseline_fold{i + 1}_best.pth" for i in range(num_folds)]
 
 models = []
 for i, path in enumerate(model_paths):
