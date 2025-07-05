@@ -13,6 +13,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import balanced_accuracy_score, roc_auc_score
 from tqdm import tqdm
 import pickle
+import timm
 
 # Device setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -55,7 +56,7 @@ class ResNet50(nn.Module):
         return logits, Y_prob, Y_hat
 
 # Setup logging
-experiment_dir = "/cluster/CBIO/home/hfeki/Midog25/MIDOG_2025_Guide/classification_results_all/ResNet50_Eval"
+experiment_dir = "/cluster/CBIO/home/hfeki/MIDOG_Models_CBIO/CNN-Based_Models/ROC-AUC_models"
 exp_dir = Path(experiment_dir)
 exp_dir.mkdir(exist_ok=True, parents=True)
 
@@ -96,7 +97,6 @@ test_dataset = InferenceDataset(test_images, test_labels, transform=val_transfor
 test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False, num_workers=8, pin_memory=True)
 
 # Load models
-import timm
 num_classes = 1
 num_folds = 5
 model_paths = [f"/cluster/CBIO/home/hfeki/Midog25/MIDOG_2025_Guide/classification_results_all/classif_resnet50/MIDOG25_binary_classification_baseline_fold_{i + 1}_best.pth" for i in range(num_folds)]
